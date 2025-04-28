@@ -24,11 +24,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun NewTaskScreen(
+    taskViewModel: TaskViewModel,
     onSaveTask: () -> Unit
 ) {
     var title by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    var priority by remember { mutableStateOf("Medium") }
+    var priority by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -65,7 +66,7 @@ fun NewTaskScreen(
             listOf("High", "Medium", "Low").forEach { level ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(end = 16.dp)
+                    modifier = Modifier.padding(end = 12.dp)
                 ) {
                     RadioButton(
                         selected = priority == level,
@@ -80,7 +81,8 @@ fun NewTaskScreen(
 
         Button(
             onClick = {
-                // Aqui você pode salvar a tarefa no banco de dados futuramente
+                val newTask = Task(title, description, priority)
+                taskViewModel.addTask(newTask)
                 onSaveTask()
             },
             modifier = Modifier.align(Alignment.End)
