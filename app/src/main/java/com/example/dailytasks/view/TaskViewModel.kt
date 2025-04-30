@@ -1,5 +1,6 @@
 package com.example.dailytasks.view
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 
 data class Task(
@@ -8,11 +9,15 @@ data class Task(
     val priority: String
 )
 
-class TaskViewModel : ViewModel(){
-    private val _taskList = mutableListOf<Task>()
-    val taskList: List<Task> = _taskList
+class TaskViewModel : ViewModel() {
+    var taskList = mutableStateListOf<Task>()
+        private set
 
-    fun addTask(task: Task){
-        _taskList.add(task)
+    fun addTask(task: Task) {
+        taskList.add(task)
+    }
+
+    fun removeTask(task: Task) {
+        taskList.remove(task)
     }
 }

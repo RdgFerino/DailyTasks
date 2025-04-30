@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -37,6 +38,8 @@ fun NewTaskScreen(
             .padding(16.dp)
 
     ) {
+        Spacer(modifier = Modifier.height(24.dp))
+
         Text(text = "New Task", style = MaterialTheme.typography.headlineSmall)
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -66,7 +69,7 @@ fun NewTaskScreen(
             listOf("High", "Medium", "Low").forEach { level ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(end = 12.dp)
+                    modifier = Modifier.padding(end = 6.dp)
                 ) {
                     RadioButton(
                         selected = priority == level,
